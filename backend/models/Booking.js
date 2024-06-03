@@ -1,35 +1,30 @@
 import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema(
-   {
-      userId: {
-         type: String
-      },
-      userEmail: {
-         type: String
-      },
-      tourName: {
-         type: String,
-         required: true,
-      },
-      fullName: {
-         type: String,
-         required: true,
-      },
-      guestSize: {
-         type: Number,
-         required: true
-      },
-      phone: {
-         type: Number,
-         required: true
-      },
-      bookAt: {
-         type: Date,
-         required: true
-      },
-   },
-   { timestamps: true }
+  {
+    cart: {
+      type: mongoose.Types.ObjectId,
+      ref: "Cart",
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    startGate: {
+      type: String,
+      required: true,
+    },
+    note: {
+      type: String,
+      required: true,
+    },
+    //chưa thanh toán, đã thanh toán, đã đi,
+    status: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
 );
 
 export default mongoose.model("Booking", bookingSchema);

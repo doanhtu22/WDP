@@ -16,15 +16,40 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    photo: {
-      type: String,
+    avatar: [avatarSchema],
+    phone: {
+      type: Number,
+      required: true,
     },
-
-    role: {
-      type: String,
-      default: "admin",
+    dob: {
+      type: Date,
+      required: true,
     },
+    gender: {
+      type: Boolean,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    // căn cước công dân
+    cccd: {
+      type: String,
+      required: true,
+    },
+    favourite_tours: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Tours",
+      },
+    ],
+    history_tours: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Tours",
+      },
+    ],
   },
   { timestamps: true }
 );
