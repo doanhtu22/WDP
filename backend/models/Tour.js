@@ -1,5 +1,37 @@
 import mongoose from "mongoose";
 
+const imageSchema = new mongoose.Schema(
+  {
+    url: {
+      type: String,
+      required: true,
+    },
+    caption: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const feedbackSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    rate: {
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
 const tourSchema = new mongoose.Schema(
   {
     title: {
@@ -7,45 +39,51 @@ const tourSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    city: {
-      type: String,
-      required: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    distance: {
-      type: Number,
-      required: true,
-    },
-    photo: {
-      type: String,
-      required: true,
-    },
-    desc: {
-      type: String,
-      required: true,
-    },
+    image: [imageSchema],
+    feedback: [feedbackSchema],
     price: {
       type: Number,
       required: true,
     },
-    maxGroupSize: {
-      type: Number,
+    code_tour: {
+      type: String,
       required: true,
     },
-
-    reviews: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Review",
-      },
-    ],
-
-    featured: {
-      type: Boolean,
-      default: false,
+    //vd: 3 ngày 2 đêm
+    time: {
+      type: String,
+      required: true,
+    },
+    //máy bay, oto
+    vehicle: {
+      type: String,
+      required: true,
+    },
+    quantityMax: {
+      type: String,
+      required: true,
+    },
+    quantityMin: {
+      type: Stirng,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    //quanh năm hay tháng ....
+    timeSuggest: {
+      type: String,
+      required: true,
+    },
+    // mọi lứa tuổi, trẻ con hay người già, cặp đôi, ....
+    user_suggest: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
