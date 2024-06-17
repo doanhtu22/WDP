@@ -1,12 +1,22 @@
 import Cart from "../models/Cart.js";
 // Create
-const create = async ({ user, tour, quantity }) => {
+const create = async ({
+  user,
+  tour,
+  quantity,
+  startDate,
+  startGate,
+  payDate,
+}) => {
   try {
     // Create new cart
     const newCart = await Cart.create({
       user,
       tour,
       quantity,
+      startDate,
+      startGate,
+      payDate,
     });
     // Return newCart object
     return newCart._doc;
@@ -31,7 +41,10 @@ const getById = async (id) => {
   }
 };
 
-const edit = async (id, { user, tour, quantity }) => {
+const edit = async (
+  id,
+  { user, tour, quantity, startDate, startGate, payDate }
+) => {
   try {
     const updatedCart = await Cart.findByIdAndUpdate(
       { _id: id },
@@ -39,6 +52,9 @@ const edit = async (id, { user, tour, quantity }) => {
         user,
         tour,
         quantity,
+        startDate,
+        startGate,
+        payDate,
       },
       { new: true }
     );

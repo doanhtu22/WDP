@@ -6,14 +6,7 @@ const bookingSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Cart",
     },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    startGate: {
-      type: String,
-      required: true,
-    },
+
     note: {
       type: String,
       required: true,
