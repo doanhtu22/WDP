@@ -1,12 +1,11 @@
 import Booking from "../models/Booking.js";
 // Create
-const create = async ({ cart, startDate, startGate, note, status }) => {
+const create = async ({ cart, note, status }) => {
   try {
     // Create new booking
     const newBooking = await Booking.create({
       cart,
-      startDate,
-      startGate,
+
       note,
       status,
     });
@@ -33,14 +32,13 @@ const getById = async (id) => {
   }
 };
 
-const edit = async (id, { cart, startDate, startGate, note, status }) => {
+const edit = async (id, { cart, note, status }) => {
   try {
     const updatedBooking = await Booking.findByIdAndUpdate(
       { _id: id },
       {
         cart,
-        startDate,
-        startGate,
+
         note,
         status,
       },
