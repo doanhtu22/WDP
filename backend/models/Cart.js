@@ -14,6 +14,18 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    startGate: {
+      type: String,
+      required: true,
+    },
+    payDate: {
+      type: Date,
+      required: true,
+    },
   },
   { timestamps: true }
 );
