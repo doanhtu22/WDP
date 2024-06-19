@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const adminSchema = new mongoose.Schema(
   {
     username: {
@@ -16,7 +15,6 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar: [avatarSchema],
     role: {
       type: String,
       default: "admin",
