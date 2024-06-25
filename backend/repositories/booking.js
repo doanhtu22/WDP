@@ -1,12 +1,23 @@
 import Booking from "../models/Booking.js";
 // Create
-const create = async ({ cart, note, status }) => {
+const create = async ({
+  user,
+  tour,
+  quantity,
+  startDate,
+  startGate,
+  payDate,
+  status,
+}) => {
   try {
     // Create new booking
     const newBooking = await Booking.create({
-      cart,
-
-      note,
+      user,
+      tour,
+      quantity,
+      startDate,
+      startGate,
+      payDate,
       status,
     });
     // Return newBooking object
@@ -18,7 +29,7 @@ const create = async ({ cart, note, status }) => {
 // Get all bookings
 const list = async () => {
   try {
-    return await Booking.find({}).exec();
+    return await Booking.find({}).populate("tour").exec();
   } catch (error) {
     throw new Error(error.toString());
   }
@@ -26,20 +37,26 @@ const list = async () => {
 
 const getById = async (id) => {
   try {
-    return await Booking.findOne({ _id: id }).exec();
+    return await Booking.findOne({ _id: id }).populate("tour").exec();
   } catch (error) {
     throw new Error(error.toString());
   }
 };
 
-const edit = async (id, { cart, note, status }) => {
+const edit = async (
+  id,
+  { user, tour, quantity, startDate, startGate, payDate, status }
+) => {
   try {
     const updatedBooking = await Booking.findByIdAndUpdate(
       { _id: id },
       {
-        cart,
-
-        note,
+        user,
+        tour,
+        quantity,
+        startDate,
+        startGate,
+        payDate,
         status,
       },
       { new: true }

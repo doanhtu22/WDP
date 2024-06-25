@@ -2,16 +2,30 @@ import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema(
   {
-    cart: {
+    user: {
       type: mongoose.Types.ObjectId,
-      ref: "Cart",
+      ref: "User",
     },
-
-    note: {
+    tour: {
+      type: mongoose.Types.ObjectId,
+      ref: "Tour",
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    startGate: {
       type: String,
       required: true,
     },
-    //chưa thanh toán, đã thanh toán, đã đi,
+    payDate: {
+      type: Date,
+      required: true,
+    },
     status: {
       type: String,
       required: true,
@@ -21,3 +35,5 @@ const bookingSchema = new mongoose.Schema(
 );
 
 export default mongoose.model("Booking", bookingSchema);
+
+// booking baằng cart, vẽ lại database diagram, chia quan hệ nhiều nhiều

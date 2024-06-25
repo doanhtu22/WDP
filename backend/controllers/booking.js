@@ -26,12 +26,15 @@ const createBooking = async (req, res) => {
   try {
     // Get object from request body
 
-    const { cart, startDate, startGate, note, status } = req.body;
+    const { user, tour, quantity, startDate, startGate, payDate, status } =
+      req.body;
     const newBooking = await BookingRepo.create({
-      cart,
+      user,
+      tour,
+      quantity,
       startDate,
       startGate,
-      note,
+      payDate,
       status,
     });
     res.status(201).json(newBooking);

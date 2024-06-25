@@ -26,7 +26,8 @@ const createCart = async (req, res) => {
   try {
     // Get object from request body
 
-    const { user, tour, quantity, startDate, startGate, payDate } = req.body;
+    const { user, tour, quantity, startDate, startGate, payDate, status } =
+      req.body;
     const newCart = await CartRepo.create({
       user,
       tour,
@@ -34,6 +35,7 @@ const createCart = async (req, res) => {
       startDate,
       startGate,
       payDate,
+      status,
     });
     res.status(201).json(newCart);
   } catch (error) {

@@ -1,4 +1,5 @@
 import Tour from "../models/Tour.js";
+import User from "../models/User.js";
 // Create
 const create = async ({
   title,
@@ -49,7 +50,13 @@ const list = async () => {
 
 const getById = async (id) => {
   try {
-    return await Tour.findOne({ _id: id }).exec();
+    return await Tour.findOne({ _id: id })
+      .populate({
+        path: "feedback.user",
+        model: User, // Reference to the User model
+        select: "username", // Select only necessary fields
+      })
+      .exec();
   } catch (error) {
     throw new Error(error.toString());
   }

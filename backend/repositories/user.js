@@ -4,7 +4,6 @@ const create = async ({
   username,
   email,
   password,
-  avatar,
   phone,
   dob,
   gender,
@@ -19,7 +18,6 @@ const create = async ({
       username,
       email,
       password,
-      avatar,
       phone,
       dob,
       gender,
@@ -37,7 +35,10 @@ const create = async ({
 // Get all users
 const list = async () => {
   try {
-    return await User.find({}).exec();
+    return await User.find({})
+      .populate("favourite_tours")
+      .populate("history_tours")
+      .exec();
   } catch (error) {
     throw new Error(error.toString());
   }
@@ -45,7 +46,10 @@ const list = async () => {
 
 const getById = async (id) => {
   try {
-    return await User.findOne({ _id: id }).exec();
+    return await User.findOne({ _id: id })
+      .populate("favourite_tours")
+      .populate("history_tours")
+      .exec();
   } catch (error) {
     throw new Error(error.toString());
   }
@@ -65,7 +69,6 @@ const edit = async (
     username,
     email,
     password,
-    avatar,
     phone,
     dob,
     gender,
@@ -82,7 +85,6 @@ const edit = async (
         username,
         email,
         password,
-        avatar,
         phone,
         dob,
         gender,
