@@ -60,11 +60,11 @@ const tourSchema = new mongoose.Schema(
       required: true,
     },
     quantityMax: {
-      type: String,
+      type: Number,
       required: true,
     },
     quantityMin: {
-      type: String,
+      type: Number,
       required: true,
     },
     city: {
