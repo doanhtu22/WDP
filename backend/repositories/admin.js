@@ -1,13 +1,12 @@
 import Admin from "../models/Admin.js";
 // Create
-const create = async ({ username, email, password, avatar, role }) => {
+const create = async ({ username, email, password, role }) => {
   try {
     // Create new admin
     const newAdmin = await Admin.create({
       username,
       email,
       password,
-      avatar,
       role,
     });
     // Return newAdmin object

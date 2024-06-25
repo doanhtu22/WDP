@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar: [avatarSchema],
+
     phone: {
       type: Number,
       required: true,

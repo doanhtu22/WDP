@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 app.use("/admins", AdminRoutes);
 app.use("/bookings", BookingRoutes);
-app.use("/carts", CartRouter);
+app.use("/carts", CartRoutes);
 app.use("/tours", TourRoutes);
 app.use("/users", UserRoutes);
 

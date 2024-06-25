@@ -7,6 +7,7 @@ const create = async ({
   startDate,
   startGate,
   payDate,
+  status,
 }) => {
   try {
     // Create new cart
@@ -17,6 +18,7 @@ const create = async ({
       startDate,
       startGate,
       payDate,
+      status,
     });
     // Return newCart object
     return newCart._doc;
@@ -27,7 +29,7 @@ const create = async ({
 // Get all carts
 const list = async () => {
   try {
-    return await Cart.find({}).exec();
+    return await Cart.find({}).populate("tour").exec();
   } catch (error) {
     throw new Error(error.toString());
   }
@@ -35,7 +37,7 @@ const list = async () => {
 
 const getById = async (id) => {
   try {
-    return await Cart.findOne({ _id: id }).exec();
+    return await Cart.findOne({ _id: id }).populate("tour").exec();
   } catch (error) {
     throw new Error(error.toString());
   }
@@ -43,7 +45,7 @@ const getById = async (id) => {
 
 const edit = async (
   id,
-  { user, tour, quantity, startDate, startGate, payDate }
+  { user, tour, quantity, startDate, startGate, payDate, status }
 ) => {
   try {
     const updatedCart = await Cart.findByIdAndUpdate(
@@ -55,6 +57,7 @@ const edit = async (
         startDate,
         startGate,
         payDate,
+        status,
       },
       { new: true }
     );
