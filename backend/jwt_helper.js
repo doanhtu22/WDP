@@ -7,7 +7,7 @@ function signAccessToken(userId) {
     const secret = process.env.ACCESS_TOKEN_SECRET;
     const options = {
       expiresIn: "3h",
-      issuer: "localhost:9999",
+      issuer: "localhost:8000",
       audience: userId,
     };
 
@@ -28,7 +28,7 @@ function signRefreshToken(userId) {
     const secret = process.env.REFRESH_TOKEN_SECRET;
     const options = {
       expiresIn: "1y",
-      issuer: "localhost:9999",
+      issuer: "localhost:8000",
       audience: userId,
     };
 
