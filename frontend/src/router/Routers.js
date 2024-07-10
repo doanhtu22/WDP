@@ -10,6 +10,10 @@ import Tours from './../pages/Tours'
 import AboutPage from '../pages/AboutPage'
 import CopyrightPage from '../pages/CopyrightPage'
 import ForgotPassword from '../pages/ForgetPassWord'
+import AdminHome from './../pages/AdminHome';
+import UserManagement from './../pages/UserManagement';
+import ContentManagementPage from './../pages/ContentManagementPage';
+import SettingsPage from './../pages/SettingsPage';
 
 const Routers = () => {
    return (
@@ -26,6 +30,10 @@ const Routers = () => {
          <Route path='/copyright' element={<CopyrightPage/>} />
          <Route path='*' element={<Home/>} />
          <Route path='reset-password' element={<ForgotPassword/>} />
+         <Route path="/admin" element={<AdminHome />} />
+         <Route path="/admin/users" element={<UserManagement />} />
+         <Route path="/admin/content" element={<ContentManagementPage />} />
+         <Route path="/admin/settings" element={<SettingsPage />} />
       </Routes>
    )
 }
