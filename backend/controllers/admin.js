@@ -2,7 +2,7 @@ import { AdminRepo } from "../repositories/index.js";
 import { signAccessToken, signRefreshToken } from "../jwt_helper.js";
 import createError from "http-errors";
 // GET: /admins
-const getAdmin = async (req, res) => {
+const getAdmins = async (req, res) => {
   try {
     res.status(200).json(await AdminRepo.list());
   } catch (error) {
@@ -76,7 +76,7 @@ const deleteAdmin = async (req, res) => {
   }
 };
 export default {
-  getAdmin,
+  getAdmins,
   getAdminById,
   createAdmin,
   editAdmin,
