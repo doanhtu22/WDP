@@ -10,6 +10,7 @@ import Tours from './../pages/Tours'
 import AboutPage from '../pages/AboutPage'
 import CopyrightPage from '../pages/CopyrightPage'
 import ForgotPassword from '../pages/ForgetPassWord'
+import Cart from '../pages/Cart'
 
 const Routers = () => {
    return (
@@ -26,6 +27,7 @@ const Routers = () => {
          <Route path='/copyright' element={<CopyrightPage/>} />
          <Route path='*' element={<Home/>} />
          <Route path='reset-password' element={<ForgotPassword/>} />
+         <Route path='/cart' element={<Cart/>} />
       </Routes>
    )
 }
