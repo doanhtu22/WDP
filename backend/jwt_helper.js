@@ -43,7 +43,8 @@ function signRefreshToken(userId) {
 }
 
 function verifyAccessToken(req, res, next) {
-  if (!req.headers["authorization"]) return next(createError.Unauthorized());
+  if (!req.headers["authorization"]) 
+    return next(createError.Unauthorized());
 
   const authHeader = req.headers["authorization"];
   const bearerToken = authHeader.split(" ");
@@ -51,8 +52,7 @@ function verifyAccessToken(req, res, next) {
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
     if (err) {
-      const message =
-        err.name === "JsonWebTokenError" ? "Unauthorized" : err.message;
+      const message = err.name === "JsonWebTokenError" ? "Unauthorized" : err.message;
       return next(createError.Unauthorized(message));
     }
     req.payload = payload;
@@ -60,4 +60,8 @@ function verifyAccessToken(req, res, next) {
   });
 }
 
-export { signAccessToken, signRefreshToken, verifyAccessToken };
+export { 
+  signAccessToken,
+  signRefreshToken,
+  verifyAccessToken
+};

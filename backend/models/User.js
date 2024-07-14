@@ -41,13 +41,13 @@ const userSchema = new mongoose.Schema(
     favourite_tours: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Tours",
+        ref: "Tour",
       },
     ],
     history_tours: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Tours",
+        ref: "Tour",
       },
     ],
   },

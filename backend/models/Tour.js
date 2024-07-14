@@ -32,6 +32,19 @@ const feedbackSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const itinerarySchema = new mongoose.Schema({
+  day: {
+      type: Number,
+
+  },
+  detail: {
+      type: String,
+
+  }
+}, 
+{ timestamps: true }
+);
+
 const tourSchema = new mongoose.Schema(
   {
     title: {
@@ -41,6 +54,7 @@ const tourSchema = new mongoose.Schema(
     },
     image: [imageSchema],
     feedback: [feedbackSchema],
+    itineraries: [itinerarySchema],
     price: {
       type: Number,
       required: true,
@@ -70,6 +84,16 @@ const tourSchema = new mongoose.Schema(
     city: {
       type: String,
       required: true,
+    },
+    itineraries: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Itinerary",
+      }
+    ],
+    featured: {
+      type: Boolean,
+      default: false,
     },
     //quanh năm hay tháng ....
     timeSuggest: {

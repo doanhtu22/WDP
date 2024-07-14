@@ -2,7 +2,7 @@ import { UserRepo } from "../repositories/index.js";
 import { signAccessToken, signRefreshToken } from "../jwt_helper.js";
 import createError from "http-errors";
 // GET: /users
-const getUser = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     res.status(200).json(await UserRepo.list());
   } catch (error) {
@@ -94,7 +94,7 @@ const deleteUser = async (req, res) => {
   }
 };
 export default {
-  getUser,
+  getUsers,
   getUserById,
   createUser,
   editUser,

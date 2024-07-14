@@ -3,12 +3,14 @@ import express, { json } from "express";
 import * as dotenv from "dotenv";
 import connectDB from "./database/database.js";
 import cors from "cors";
+import mongoose from "mongoose";
 import {
   AdminRoutes,
   BookingRoutes,
   CartRoutes,
   TourRoutes,
   UserRoutes,
+  MomoRoutes
 } from "./routes/index.js";
 import { verifyAccessToken } from "./jwt_helper.js";
 // Thực thi cấu hình ứng dụng sử dụng file .env
@@ -16,7 +18,7 @@ dotenv.config();
 // Tạo đối tượng app để khởi tạo web container
 const app = express();
 app.use(json());
-
+mongoose.set('strictQuery', true); // Explicitly set to false
 app.use(cors());
 // Cấu hình hoạt động routing (định tuyến) các request gửi tới web server
 app.get("/", (req, res) => {
@@ -27,6 +29,7 @@ app.use("/bookings", BookingRoutes);
 app.use("/carts", CartRoutes);
 app.use("/tours", TourRoutes);
 app.use("/users", UserRoutes);
+app.use("/momo", MomoRoutes);
 
 // Khai báo port cho ứng dụng web
 const port = process.env.PORT || 8080;
