@@ -7,6 +7,15 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    fullname: {
+      type: String
+    },
+    address: {
+      type: String
+    },
+    phone: {
+      type: String
+    },
     email: {
       type: String,
       required: true,
@@ -17,39 +26,18 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    phone: {
-      type: Number,
-      required: true,
-    },
-    dob: {
-      type: Date,
-      required: true,
-    },
-    gender: {
-      type: Boolean,
-      required: true,
-    },
-    address: {
+    avatar: {
       type: String,
-      required: true,
     },
-    // căn cước công dân
-    cccd: {
+
+    role: {
       type: String,
-      required: true,
+      default: "admin",
     },
-    favourite_tours: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Tours",
-      },
-    ],
-    history_tours: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Tours",
-      },
-    ],
+    status: {
+      type: String,
+      default: 'active',
+    },
   },
   { timestamps: true }
 );

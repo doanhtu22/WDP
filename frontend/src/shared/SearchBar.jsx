@@ -10,7 +10,7 @@ const SearchBar = () => {
    const maxGroupSizeRef = useRef(0)
    const navigate = useNavigate()
 
-   const searchHandler = async() => {
+   const searchHandler = async () => {
       const location = locationRef.current.value
       const distance = distanceRef.current.value
       const maxGroupSize = maxGroupSizeRef.current.value
@@ -20,12 +20,12 @@ const SearchBar = () => {
       }
 
       const res = await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`)
-      
-      if(!res.ok) alert('Something went wrong')
+
+      if (!res.ok) alert('Something went wrong')
 
       const result = await res.json()
 
-      navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`, {state: result.data})
+      navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`, { state: result.data })
    }
 
    return <Col lg="12">
@@ -42,7 +42,7 @@ const SearchBar = () => {
                <span><i class='ri-map-pin-time-line'></i></span>
                <div>
                   <h6>Distance</h6>
-                  <input type="number" placeholder='Distance k/m' ref={distanceRef} />
+                  <input type="number" placeholder='Km' ref={distanceRef} />
                </div>
             </FormGroup>
             <FormGroup className='d-flex gap-3 form__group form__group-last'>
