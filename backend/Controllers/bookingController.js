@@ -72,23 +72,27 @@ export const getAllBookingByUserId = async (req, res) => {
 
 // update booking by ID
 export const updateBookingById = async (req, res) => {
-   const { bookingId } = req.params;
+   const { bookingId } = req.params; // Extract the bookingId from the request parameters
 
    try {
-      const updatedBooking = await Booking.findByIdAndUpdate(
-         bookingId,
-         { $set: req.body },
-         { new: true }
-      );
+       // Attempt to find the booking by ID and update it with the new data from the request body
+       const updatedBooking = await Booking.findByIdAndUpdate(
+           bookingId,
+           { $set: req.body }, // Set the fields provided in the request body
+           { new: true } // Return the updated document
+       );
 
-      if (!updatedBooking) {
-         return res.status(404).json({ success: false, message: 'Booking not found' });
-      }
+       // If the booking isn't found, respond with a 404 status and a corresponding message
+       if (!updatedBooking) {
+           return res.status(404).json({ success: false, message: 'Booking not found' });
+       }
 
-      res.status(200).json({ success: true, message: 'Booking updated successfully', data: updatedBooking });
+       // If the update is successful, respond with a 200 status and the updated booking data
+       res.status(200).json({ success: true, message: 'Booking updated successfully', data: updatedBooking });
    } catch (error) {
-      console.error('Error updating booking:', error);
-      res.status(500).json({ success: false, message: 'Failed to update booking' });
+       // If there's an error during the update process, log the error and respond with a 500 status
+       console.error('Error updating booking:', error);
+       res.status(500).json({ success: false, message: 'Failed to update booking' });
    }
 };
 
