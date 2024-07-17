@@ -1,9 +1,10 @@
 import { createContext, useEffect, useReducer } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const initial_state = {
    user: null,
    loading: false,
-   error: null
+   error: null,
 };
 
 export const AuthContext = createContext(initial_state);
@@ -14,50 +15,27 @@ const AuthReducer = (state, action) => {
          return {
             user: null,
             loading: true,
-            error: null
+            error: null,
          };
       case 'LOGIN_SUCCESS':
          return {
             user: action.payload,
             loading: false,
-            error: null
+            error: null,
          };
       case 'LOGIN_FAILURE':
          return {
             user: null,
             loading: false,
-            error: action.payload
-         };
-      case 'REGISTER_SUCCESS':
-         return {
-            user: null,
-            loading: false,
-            error: null
+            error: action.payload,
          };
       case 'LOGOUT':
+         localStorage.removeItem("accessToken");
+         localStorage.removeItem("user");
          return {
             user: null,
             loading: false,
-            error: null
-         };
-      // New actions for password reset
-      case 'RESET_PASSWORD_START':
-         return {
-            ...state,
-            loading: true,
-            error: null
-         };
-      case 'RESET_PASSWORD_SUCCESS':
-         return {
-            ...state,
-            loading: false,
-            error: null
-         };
-      case 'RESET_PASSWORD_FAILURE':
-         return {
-            ...state,
-            loading: false,
-            error: action.payload
+            error: null,
          };
       default:
          return state;
@@ -68,15 +46,30 @@ export const AuthContextProvider = ({ children }) => {
    const [state, dispatch] = useReducer(AuthReducer, initial_state);
 
    useEffect(() => {
-      localStorage.setItem("user", JSON.stringify(state.user))
-   }, [state.user])
+      const accessToken = localStorage.getItem("accessToken");
+      console.log("AccessToken from localStorage:", accessToken);
+      if (accessToken) {
+         try {
+            const decodedUser = jwtDecode(accessToken);
+            console.log("Decoded user:", decodedUser);
+            dispatch({ type: 'LOGIN_SUCCESS', payload: decodedUser });
+         } catch (error) {
+            console.error("Invalid token:", error);
+            dispatch({ type: 'LOGIN_FAILURE', payload: 'Invalid token' });
+         }
+      }
+   }, []);
 
-   return <AuthContext.Provider value={{
-      user: state.user,
-      loading: state.loading,
-      error: state.error,
-      dispatch,
-   }}>
-      {children}
-   </AuthContext.Provider>
+   return (
+      <AuthContext.Provider
+         value={{
+            user: state.user,
+            loading: state.loading,
+            error: state.error,
+            dispatch,
+         }}
+      >
+         {children}
+      </AuthContext.Provider>
+   );
 };
