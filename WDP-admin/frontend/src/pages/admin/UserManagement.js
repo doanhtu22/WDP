@@ -123,13 +123,7 @@ function UserManagement() {
   return (
     <div className="tours-container">
       <h2>Users Management</h2>
-      <Button
-        variant="primary"
-        className="mb-3"
-        onClick={() => setShowModal(true)}
-      >
-        Create User
-      </Button>
+     
       <TableUser
         data={users}
         handleEdit={handleEdit}
