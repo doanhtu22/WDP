@@ -10,7 +10,11 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  price: {
+  price: { //hotel price
+    type: Number,
+    required: true
+  },
+  bedPrice: { // extra bed price
     type: Number,
     required: true
   }

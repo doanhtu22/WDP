@@ -16,7 +16,15 @@ const bookingSchema = new mongoose.Schema(
          type: String,
          required: true,
       },
-      guestSize: {
+      adult: {
+         type: Number,
+         required: true
+      },
+      children: {
+         type: Number,
+         required: true
+      },
+      baby: {
          type: Number,
          required: true
       },
@@ -41,9 +49,12 @@ const bookingSchema = new mongoose.Schema(
          type: String, // thêm trường hotelId
          required: true
       },
-      hotelPrice: {
-         type: Number, // thêm trường hotelPrice
+      extraBed: {
+         type: Number,
          required: true
+      },
+      roomQuantity: {
+         type: Number,
       },
       restaurantId: {
          type: String, // thêm trường restaurantId

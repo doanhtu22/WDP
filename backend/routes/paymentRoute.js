@@ -21,9 +21,9 @@ router.post('/create-payment-link', async (req, res) => {
         const order = {
             amount: amount * 10,
             description: bookingId, // Example description
-            orderCode: Math.floor(10000000 + Math.random() * 90000000), // Generate a random 8-digit order code
-            returnUrl: `${YOUR_DOMAIN}/payment-success/${bookingId}`,
-            cancelUrl: `${YOUR_DOMAIN}/payment-cancel/${bookingId}`,
+            orderCode: Math.floor(10000000 + Math.random() * 90000000),
+            returnUrl: `${YOUR_DOMAIN}/success`,
+            cancelUrl: `${YOUR_DOMAIN}/cancel`,
         };
 
         const paymentLink = await payos.createPaymentLink(order);

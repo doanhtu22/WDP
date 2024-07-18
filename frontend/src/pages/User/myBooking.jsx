@@ -3,10 +3,10 @@ import axios from "axios";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../utils/config";
-import TourCard from "../../shared/TourCard";
 import Swal from "sweetalert2";
 import "../../styles/mybooking.css";
 import { format } from "date-fns";
+import TourCardBooking from "../../components/Tourdetail-mybooking/TourCard";
 
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
@@ -139,7 +139,7 @@ const MyBookings = () => {
                                         {booking.tourName || "Tour not found"}
                                     </Card.Title>
                                     {booking.tourInfo ? (
-                                        <TourCard tour={booking.tourInfo} />
+                                        <TourCardBooking tour={booking.tourInfo} />
                                     ) : (
                                         <p>Tour information not available</p>
                                     )}
@@ -201,11 +201,11 @@ const MyBookings = () => {
                             <p><strong>Book Date:</strong> {format(new Date(selectedBooking.bookAt), "dd-MM-yyyy")}</p>
                             <p><strong>Full Name:</strong> {selectedBooking.fullName}</p>
                             <p><strong>Email:</strong> {selectedBooking.userEmail}</p>
-                            <p><strong>Group Size:</strong> {selectedBooking.guestSize}</p>
+                            <p><strong>Group Size:</strong> {selectedBooking.adult}-adult || {selectedBooking.children}-children || {selectedBooking.baby}-baby</p>
                             <p><strong>Phone:</strong> {selectedBooking.phone}</p>
                             <p><strong>Hotel:</strong> {hotel ? hotel.name : "Not available"}</p>
                             <p><strong>Restaurant:</strong> {restaurant ? restaurant.name : "Not available"}</p>
-                            <p><strong>Hotel Price:</strong> ${selectedBooking.hotelPrice}</p>
+                            <p><strong>Room:</strong> {selectedBooking.roomQuantity} + {selectedBooking.extraBed}(extraBed)</p>
                             <p><strong>Status:</strong> <span className={
                                 selectedBooking.status === 'pending' ? 'status-pending' :
                                     selectedBooking.status === 'confirmed' ? 'status-confirmed' :
@@ -216,7 +216,7 @@ const MyBookings = () => {
                             {selectedBooking.tourInfo && (
                                 <>
                                     <h5>Tour Information</h5>
-                                    <TourCard tour={selectedBooking.tourInfo} />
+                                    <TourCardBooking tour={selectedBooking.tourInfo} />
                                 </>
                             )}
                         </>

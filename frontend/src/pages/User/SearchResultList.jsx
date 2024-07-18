@@ -3,6 +3,7 @@ import CommonSection from './../../shared/CommonSection'
 import { Container, Row, Col } from 'reactstrap'
 import { useLocation } from 'react-router-dom'
 import TourCard from '../../shared/TourCard'
+import SearchBar from '../../shared/SearchBar'
 
 
 const SearchResultList = () => {
@@ -13,6 +14,13 @@ const SearchResultList = () => {
    return (
       <>
          <CommonSection title={'Tour Search Result'} />
+         <section>
+         <Container>
+            <Row>
+               <SearchBar />
+            </Row>
+         </Container>
+      </section>
          <section>
             <Container>
                <Row>

@@ -14,6 +14,8 @@ import Profile from '../pages/User/Profile'
 import MyBookings from '../pages/User/myBooking'
 import Promotion from '../pages/User/Promotion'
 import ContactPage from '../pages/User/Contact'
+import PaymentSuccess from '../pages/User/Success'
+import PaymentCancel from '../pages/User/Cancel'
 
 
 const Routers = () => {
@@ -35,6 +37,8 @@ const Routers = () => {
          <Route path="/my-booking" element={<MyBookings />} />
          <Route path='/contact' element={<ContactPage />} />
          <Route path='/deals' element={<Promotion />} />
+         <Route path="/success" component={PaymentSuccess} />
+         <Route path="/cancel" component={PaymentCancel} />
 
 
       </Routes>

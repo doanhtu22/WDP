@@ -21,32 +21,36 @@ const Booking = ({ tour, avgRating }) => {
       tourName: title,
       fullName: '',
       phone: '',
-      guestSize: 1,
+      adult: 1,
+      children: 0,
+      baby: 0,
       bookAt: '',
       status: 'pending',
       price: price,
       hotelId: '',
-      hotelPrice: 0, // thêm trường hotelPrice
+      hotelPrice: 0,
+      bedPrice: 0,
+      extraBed: 0,
+      roomQuantity: 1,
       restaurantId: ''
    });
 
    const [errors, setErrors] = useState({
-      guestSize: '',
+      adult: '',
+      children: '',
+      baby: '',
       bookAt: '',
+      roomQuantity: '',
+      extraBed: ''
    });
 
    useEffect(() => {
       const fetchData = async () => {
          try {
-            const itineraryResponse = await axios.get(`${BASE_URL}/itinerary/tour/${tourId}`, {
-               withCredentials: true,
-            });
-            const hotelResponse = await axios.get(`${BASE_URL}/hotels/tour/${tourId}`, {
-               withCredentials: true,
-            });
-            const restaurantResponse = await axios.get(`${BASE_URL}/restaurants/tour/${tourId}`, {
-               withCredentials: true,
-            });
+            const itineraryResponse = await axios.get(`${BASE_URL}/itinerary/tour/${tourId}`, { withCredentials: true });
+            const hotelResponse = await axios.get(`${BASE_URL}/hotels/tour/${tourId}`, { withCredentials: true });
+            const restaurantResponse = await axios.get(`${BASE_URL}/restaurants/tour/${tourId}`, { withCredentials: true });
+
             setItinerary(itineraryResponse.data);
             setHotels(hotelResponse.data);
             setRestaurants(restaurantResponse.data);
@@ -60,15 +64,21 @@ const Booking = ({ tour, avgRating }) => {
 
    const handleChange = e => {
       const { id, value } = e.target;
-
       setBooking(prev => ({ ...prev, [id]: value }));
 
       // Validate input fields and set errors
-      if (id === 'guestSize') {
-         if (value < 1) {
-            setErrors(prev => ({ ...prev, guestSize: 'Guest size must be at least 1.' }));
+      if (id === 'adult' || id === 'children' || id === 'baby') {
+         if (value < 0) {
+            setErrors(prev => ({ ...prev, [id]: `${id} must be at least 0.` }));
          } else {
-            setErrors(prev => ({ ...prev, guestSize: '' }));
+            setErrors(prev => ({ ...prev, [id]: '' }));
+         }
+
+         // Reset room quantity if adult changes to ensure validity
+         if (id === 'adult') {
+            if (value < booking.roomQuantity) {
+               setBooking(prev => ({ ...prev, roomQuantity: value }));
+            }
          }
       }
 
@@ -83,7 +93,22 @@ const Booking = ({ tour, avgRating }) => {
             setErrors(prev => ({ ...prev, bookAt: '' }));
          }
       }
-      console.log(booking);
+
+      if (id === 'roomQuantity') {
+         if (value < 1 || value > booking.adult) {
+            setErrors(prev => ({ ...prev, roomQuantity: 'Number of rooms must be at least 1 and cannot exceed the number of adults.' }));
+         } else {
+            setErrors(prev => ({ ...prev, roomQuantity: '' }));
+         }
+      }
+
+      if (id === 'extraBed') {
+         if (value < 0 || value > booking.roomQuantity) {
+            setErrors(prev => ({ ...prev, extraBed: 'Number of extra beds must be between 0 and the number of rooms.' }));
+         } else {
+            setErrors(prev => ({ ...prev, extraBed: '' }));
+         }
+      }
    }
 
    const handleSelectChange = e => {
@@ -91,24 +116,26 @@ const Booking = ({ tour, avgRating }) => {
 
       if (name === 'hotelId') {
          const selectedHotel = hotels.find(hotel => hotel._id === value);
-         setBooking(prev => ({ ...prev, hotelId: value, hotelPrice: selectedHotel ? selectedHotel.price : 0 }));
+         setBooking(prev => ({ ...prev, hotelId: value, hotelPrice: selectedHotel ? selectedHotel.price : 0, bedPrice: selectedHotel ? selectedHotel.bedPrice : 0 }));
       } else if (name === 'restaurantId') {
          setBooking(prev => ({ ...prev, restaurantId: value }));
       }
-      console.log(booking);
    }
 
+   // Calculate number of days in itinerary
+   const itineraryDays = itinerary.length;
+
    const serviceFee = 10;
-   const totalAmount = Number(price) * Number(booking.guestSize)
-      + Number(serviceFee)
-      + Number(booking.hotelPrice) * Number(booking.guestSize);
+   const totalAmount =
+      (Number(booking.hotelPrice) * Number(booking.roomQuantity) + Number(booking.extraBed) * Number(booking.bedPrice)) * itineraryDays +
+      (Number(price) * Number(booking.adult) + 0.7 * Number(price) * Number(booking.children)) + serviceFee;
 
    const handleClick = async e => {
       e.preventDefault();
 
       // Validate guest size
-      if (booking.guestSize < 1) {
-         return alert('Guest size must be at least 1.');
+      if (booking.adult < 1) {
+         return alert('At least one adult must be included.');
       }
 
       // Validate booking date
@@ -123,6 +150,15 @@ const Booking = ({ tour, avgRating }) => {
 
       if (bookingDate < today) {
          return alert('Booking date cannot be in the past.');
+      }
+
+      // Validate room quantity and extra beds
+      if (booking.roomQuantity < 1 || booking.roomQuantity > booking.adult) {
+         return alert('Number of rooms must be at least 1 and cannot exceed the number of adults.');
+      }
+
+      if (booking.extraBed < 0 || booking.extraBed > booking.roomQuantity) {
+         return alert('Number of extra beds must be between 0 and the number of rooms.');
       }
 
       try {
@@ -172,23 +208,43 @@ const Booking = ({ tour, avgRating }) => {
                </FormGroup>
                <FormGroup className='d-flex align-items-center gap-3'>
                   <input type="date" placeholder='' id='bookAt' required onChange={handleChange} />
-                  <input type="number" placeholder='Guest' id='guestSize' required onChange={handleChange} />
                </FormGroup>
                <p className='text-danger'> {errors.bookAt && <small>{errors.bookAt}</small>}</p>
-               <p className='text-danger'>{errors.guestSize && <small >{errors.guestSize}</small>}</p>
+               <FormGroup className='d-flex align-items-center gap-3'>
+                  <label>Adult
+                     <input type="number" placeholder='Adult' id='adult' required onChange={handleChange} />
+                  </label>
+                  <label>Children
+                     <input type="number" placeholder='Children' id='children' required onChange={handleChange} />
+                  </label>
+                  <label>Baby
+                     <input type="number" placeholder='Baby' id='baby' required onChange={handleChange} />
+                  </label>
+               </FormGroup>
+
+               <p className='text-danger'>{errors.adult && <small >{errors.adult}</small>}</p>
+               <p className='text-danger'>{errors.children && <small >{errors.children}</small>}</p>
+               <p className='text-danger'>{errors.baby && <small >{errors.baby}</small>}</p>
+
                <FormGroup>
-                  <label htmlFor="hotel">Select Hotel:</label>
-                  <select name="hotelId" id="hotelId" onChange={handleSelectChange} required>
-                     <option value="">Select a hotel</option>
+                  <select name="hotelId" id="hotelId" onChange={handleSelectChange}>
+                     <option value="">Select Hotel</option>
                      {hotels.map(hotel => (
                         <option key={hotel._id} value={hotel._id}>{hotel.name}</option>
                      ))}
                   </select>
                </FormGroup>
+               <FormGroup className='d-flex align-items-center gap-3'>
+                  <label>Room Quantity<input type="number" placeholder='Room Quantity' id='roomQuantity' value={booking.roomQuantity} required onChange={handleChange} /></label>
+                  <label>Extra Beds<input type="number" placeholder='Extra Beds' id='extraBed' value={booking.extraBed} required onChange={handleChange} /></label>
+               </FormGroup>
+
+               <p className='text-danger'>{errors.roomQuantity && <small>{errors.roomQuantity}</small>}</p>
+               <p className='text-danger'>{errors.extraBed && <small>{errors.extraBed}</small>}</p>
+
                <FormGroup>
-                  <label htmlFor="restaurant">Select Restaurant:</label>
-                  <select name="restaurantId" id="restaurantId" onChange={handleSelectChange} required>
-                     <option value="">Select a restaurant</option>
+                  <select name="restaurantId" id="restaurantId" onChange={handleSelectChange}>
+                     <option value="">Select Restaurant</option>
                      {restaurants.map(restaurant => (
                         <option key={restaurant._id} value={restaurant._id}>{restaurant.name}</option>
                      ))}
@@ -212,18 +268,23 @@ const Booking = ({ tour, avgRating }) => {
                </div>
             ))}
          </div>
-         {/* =============== ITINERARY END ================ */}
+         {/* =============== ITINERARY END ================= */}
 
-         {/* =============== BOOKING BOTTOM ================ */}
          <div className="booking__bottom">
             <ListGroup>
                <ListGroupItem className='border-0 px-0'>
-                  <h5 className='d-flex align-items-center gap-1'>${price} <i className='ri-close-line'></i> {booking.guestSize} person(s)</h5>
-                  <span> ${price * booking.guestSize}</span>
+                  <h5 className='d-flex align-items-center gap-1'>
+                     ${price} <i className="ri-close-line"></i> {booking.adult} adults, {booking.children} children(sale 30%)
+                  </h5>
+                  <span>${(Number(price) * Number(booking.adult) + 0.7 * Number(price) * Number(booking.children)).toFixed(2)}</span>
                </ListGroupItem>
                <ListGroupItem className='border-0 px-0'>
-                  <h5 className='d-flex align-items-center gap-1'>Hotel Price: {booking.hotelPrice} <i className='ri-close-line'></i> {booking.guestSize} person(s)</h5>
-                  <span> ${booking.hotelPrice * booking.guestSize}</span>
+                  <h5>Hotel Cost: {booking.hotelPrice}(room price) x {booking.roomQuantity} x {itineraryDays} day</h5>
+                  <span>${(Number(booking.hotelPrice) * Number(booking.roomQuantity) * itineraryDays).toFixed(2)}</span>
+               </ListGroupItem>
+               <ListGroupItem className='border-0 px-0'>
+                  <h5>Extra Bed Cost: {booking.bedPrice}(bedPrice) x {booking.extraBed} x {itineraryDays} day</h5>
+                  <span>${(Number(booking.extraBed) * Number(booking.bedPrice) * itineraryDays).toFixed(2)}</span>
                </ListGroupItem>
                <ListGroupItem className='border-0 px-0'>
                   <h5>Service charge</h5>
@@ -231,14 +292,14 @@ const Booking = ({ tour, avgRating }) => {
                </ListGroupItem>
                <ListGroupItem className='border-0 px-0 total'>
                   <h5>Total</h5>
-                  <span>${totalAmount}</span>
+                  <span>${totalAmount.toFixed(2)}</span>
                </ListGroupItem>
             </ListGroup>
-
             <Button className='btn primary__btn w-100 mt-4' onClick={handleClick}>Book Now</Button>
          </div>
+
       </div>
    );
-}
+};
 
 export default Booking;
