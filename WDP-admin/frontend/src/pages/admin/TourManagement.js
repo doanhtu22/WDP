@@ -88,6 +88,7 @@ function TourManagement() {
                         <th>Price</th>
                         <th>Featured</th>
                         <th>Actions</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,9 +110,10 @@ function TourManagement() {
                             </td>
                             <td>
                                 <Link to={`/admin/update-tour/${tour._id}`}>
-                                    <Button variant="warning" className="me-2">Update</Button>
-                                </Link>
-                                <Button variant="danger" onClick={() => handleDeleteTour(tour._id)}>Delete</Button>
+                                    <Button variant="warning" >Update</Button>
+                                </Link> </td>
+                               <td>
+                                <Button variant="danger"  onClick={() => handleDeleteTour(tour._id)}>Delete</Button>
                             </td>
                         </tr>
                     ))}

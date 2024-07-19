@@ -25,7 +25,7 @@ function App() {
     <AuthContextProvider>
       <Suspense fallback={<SpinnerComponent />}>
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           {publicRoutes.map((item, index) => (
             <Route
               key={index}

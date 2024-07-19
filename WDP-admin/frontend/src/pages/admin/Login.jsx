@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
-import "../styles/login.css";
+import "../../styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
-import loginImg from "../assets/images/login.png";
-import userIcon from "../assets/images/user.png";
-import { AuthContext } from "../context/AuthContext";
-import { BASE_URL } from "../utils/config";
+import loginImg from "../../assets/images/logo.png";
+import userIcon from "../../assets/images/user.png";
+import { AuthContext } from "../../context/AuthContext";
+import { BASE_URL } from "../../utils/config";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -57,7 +57,7 @@ const Login = () => {
     <section>
       <Container>
         <Row>
-          <Col lg="8" className="m-auto">
+          <Col lg="12" className="m-auto">
             <div className="login__container d-flex justify-content-between">
               <div className="login__img">
                 <img src={loginImg} alt="Login" />
@@ -67,7 +67,7 @@ const Login = () => {
                 <div className="user">
                   <img src={userIcon} alt="User" />
                 </div>
-                <h2>Login</h2>
+                <h2>Admin Login</h2>
 
                 <Form onSubmit={handleClick}>
                   <FormGroup>
@@ -91,19 +91,12 @@ const Login = () => {
                     />
                   </FormGroup>
                   <Button
-                    className="btn secondary__btn auth__btn"
+                    className="btn  auth__btn"
                     type="submit"
                   >
                     Login
                   </Button>
                 </Form>
-                <p>
-                  Forgot password?{" "}
-                  <Link to="/reset-password">Reset password</Link>
-                </p>
-                <p>
-                  Don't have an account? <Link to="/register">Create</Link>
-                </p>
               </div>
             </div>
           </Col>
