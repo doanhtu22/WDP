@@ -1,0 +1,267 @@
+[{
+  "_id": {
+    "$oid": "65ee7cfd6b4e35a3fab71279"
+  },
+  "productId": "6159d3e293b42a001fcd4d76",
+  "username": "user123",
+  "reviewText": "Great tour! Amazing experience.",
+  "rating": 5
+},
+{
+  "_id": {
+    "$oid": "65ee7cfd6b4e35a3fab7127a"
+  },
+  "productId": "6159d3e293b42a001fcd4d76",
+  "username": "user456",
+  "reviewText": "Enjoyed the tour. Highly recommended.",
+  "rating": 4
+},
+{
+  "_id": {
+    "$oid": "65ee7cfd6b4e35a3fab7127b"
+  },
+  "productId": "6159d3e293b42a001fcd4d77",
+  "username": "user789",
+  "reviewText": "Could be better. Average experience.",
+  "rating": 3
+},
+{
+  "_id": {
+    "$oid": "65eeacf81c42c5245b4799d1"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "ok",
+  "rating": 4,
+  "createdAt": {
+    "$date": "2024-03-11T07:04:24.806Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-11T07:04:24.806Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eff1a8241b3e178fc148c7"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Đẹp thế nhở",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-03-12T06:09:44.456Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T06:09:44.456Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f962240c3bfc8885c4e34b"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Duoc vai l",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-03-19T10:00:04.371Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-19T10:00:04.371Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fd2340cb0f22c24ca14f2c"
+  },
+  "username": "abc",
+  "reviewText": "cung duoc",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-03-22T06:20:48.243Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-22T06:20:48.243Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663b3fae8b29e055a1c52399"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Anh Trọng ăn cức",
+  "rating": 1,
+  "createdAt": {
+    "$date": "2024-05-08T09:02:38.428Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-08T09:02:38.428Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66448374b510ca717dab968d"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Alo",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-05-15T09:42:12.339Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-15T09:42:12.339Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce269fc85f8c86882af17"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Được",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:10:33.839Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:10:33.839Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce349fc85f8c86882af2e"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "cũng ok",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:14:17.887Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:14:17.887Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce356fc85f8c86882af3b"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "hello",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:14:30.802Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:14:30.802Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce396fc85f8c86882af75"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "hellloooooo",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:15:34.155Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:15:34.155Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce3cafc85f8c86882afab"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Cung duoc",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:16:26.555Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:16:26.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce3e8fc85f8c86882afcb"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "Duọc",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:16:56.939Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:16:56.939Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce439fc85f8c86882aff2"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "hieu",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:18:17.313Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:18:17.313Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce479fc85f8c86882b012"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "hello",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:19:21.428Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:19:21.428Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce49dfc85f8c86882b040"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "alo",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:19:57.453Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:19:57.453Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668ce4bffc85f8c86882b075"
+  },
+  "username": "hieudeptrais1tg",
+  "reviewText": "cũng hay",
+  "rating": 5,
+  "createdAt": {
+    "$date": "2024-07-09T07:20:31.364Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T07:20:31.364Z"
+  },
+  "__v": 0
+}]

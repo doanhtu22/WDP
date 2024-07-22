@@ -7,18 +7,63 @@
   "address": "Ha Long City",
   "distance": 10,
   "photo": "https://bcp.cdnchinhphu.vn/344443456812359680/2023/3/9/halong-16783543829461323593123.jpg",
-  "desc": "Explore the stunning limestone karsts and emerald waters of Ha Long Bay.",
+  "desc": "Explore the stunning limestone karsts and emerald waters of Ha Long Bay.3",
   "price": 50,
   "maxGroupSize": 15,
   "reviews": [
     {
       "$oid": "65eff1a8241b3e178fc148c7"
+    },
+    {
+      "$oid": "65f962240c3bfc8885c4e34b"
+    },
+    {
+      "$oid": "65fd2340cb0f22c24ca14f2c"
+    },
+    {
+      "$oid": "663b3fae8b29e055a1c52399"
+    },
+    {
+      "$oid": "66448374b510ca717dab968d"
+    },
+    {
+      "$oid": "668ce269fc85f8c86882af17"
+    },
+    {
+      "$oid": "668ce349fc85f8c86882af2e"
+    },
+    {
+      "$oid": "668ce356fc85f8c86882af3b"
+    },
+    {
+      "$oid": "668ce396fc85f8c86882af75"
+    },
+    {
+      "$oid": "668ce3cafc85f8c86882afab"
+    },
+    {
+      "$oid": "668ce3e8fc85f8c86882afcb"
+    },
+    {
+      "$oid": "668ce439fc85f8c86882aff2"
+    },
+    {
+      "$oid": "668ce479fc85f8c86882b012"
+    },
+    {
+      "$oid": "668ce49dfc85f8c86882b040"
+    },
+    {
+      "$oid": "668ce4bffc85f8c86882b075"
     }
   ],
   "featured": true,
   "updatedAt": {
-    "$date": "2024-03-12T06:09:44.460Z"
-  }
+    "$date": "2024-07-22T17:03:13.172Z"
+  },
+  "hotels": [],
+  "itineraries": [],
+  "restaurants": []
 },
 {
   "_id": {
@@ -33,7 +78,13 @@
   "price": 40,
   "maxGroupSize": 20,
   "reviews": [],
-  "featured": true
+  "featured": true,
+  "hotels": [],
+  "itineraries": [],
+  "restaurants": [],
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:14.032Z"
+  }
 },
 {
   "_id": {
@@ -48,7 +99,13 @@
   "price": 45,
   "maxGroupSize": 50,
   "reviews": [],
-  "featured": false
+  "featured": true,
+  "hotels": [],
+  "itineraries": [],
+  "restaurants": [],
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:15.281Z"
+  }
 },
 {
   "_id": {
@@ -63,7 +120,10 @@
   "price": 60,
   "maxGroupSize": 10,
   "reviews": [],
-  "featured": true
+  "featured": true,
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:16.616Z"
+  }
 },
 {
   "_id": {
@@ -78,7 +138,10 @@
   "price": 25,
   "maxGroupSize": 20,
   "reviews": [],
-  "featured": false
+  "featured": true,
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:17.595Z"
+  }
 },
 {
   "_id": {
@@ -93,7 +156,10 @@
   "price": 45,
   "maxGroupSize": 15,
   "reviews": [],
-  "featured": true
+  "featured": true,
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:18.498Z"
+  }
 },
 {
   "_id": {
@@ -108,7 +174,10 @@
   "price": 10,
   "maxGroupSize": 30,
   "reviews": [],
-  "featured": false
+  "featured": true,
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:19.463Z"
+  }
 },
 {
   "_id": {
@@ -123,7 +192,10 @@
   "price": 35,
   "maxGroupSize": 25,
   "reviews": [],
-  "featured": true
+  "featured": true,
+  "updatedAt": {
+    "$date": "2024-07-22T17:03:20.081Z"
+  }
 },
 {
   "_id": {
@@ -289,4 +361,29 @@
   "maxGroupSize": 20,
   "reviews": [],
   "featured": true
+},
+{
+  "_id": {
+    "$oid": "669d51458d8e1680035dfca0"
+  },
+  "title": "hieunguvlon",
+  "city": "abc",
+  "address": "abc",
+  "distance": 11,
+  "photo": "https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045-2.jpg",
+  "desc": "abc",
+  "price": 11,
+  "maxGroupSize": 11,
+  "reviews": [],
+  "featured": false,
+  "itineraries": [],
+  "hotels": [],
+  "restaurants": [],
+  "createdAt": {
+    "$date": "2024-07-21T18:19:49.731Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-22T17:44:39.677Z"
+  },
+  "__v": 0
 }]

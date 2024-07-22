@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "65ee7dd478b1badc43c71a5f"
+  },
+  "username": "hieudeptrais1tg",
+  "email": "quanghieunguyen7a1@gmail.com",
+  "password": "$2a$10$IQzlUzkK2O5PchnkK6WQsOGDnPhmmUFcsxAMNX9guXsa7TJMIrqZy",
+  "role": "admin",
+  "createdAt": {
+    "$date": "2024-03-11T03:43:16.464Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-21T15:21:57.033Z"
+  },
+  "__v": 0,
+  "address": "Vinh, Nghe An",
+  "avatar": "user_images/1721575288735-35008346-user.png",
+  "fullname": "Hieu Nguyen Quang",
+  "phone": "0964283999",
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "65efac37a811d850416044c7"
+  },
+  "username": "abc",
+  "email": "abc@gmail.com",
+  "password": "$2a$10$BWxta1IQ5DLAuljNgZjjqOZaEluWcRJOeytSJSP71VpCAVDjID3gS",
+  "role": "user",
+  "createdAt": {
+    "$date": "2024-03-12T01:13:27.825Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-22T16:39:06.799Z"
+  },
+  "__v": 0,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "65efb2fda811d850416044e9"
+  },
+  "username": "hehe",
+  "email": "hehehe@gmail.com",
+  "password": "$2a$10$yUwJIb3vUeew8sP1ztONDuKDmNzl7Q8nJzIO1faAc3V8OGrsmhhjy",
+  "role": "user",
+  "createdAt": {
+    "$date": "2024-03-12T01:42:21.834Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-22T16:39:09.440Z"
+  },
+  "__v": 0,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "668cdf13fc85f8c86882ae8b"
+  },
+  "username": "hieudeptrais1",
+  "fullname": "Hieu Nguyen Quang ",
+  "address": "bsaudfasdbgilabsdilga",
+  "phone": "0964283968",
+  "email": "quanghieunguyen2003@gmail.com",
+  "password": "$2a$10$wvX7VOE1X2LOO9W0zIw2MewS9D8BR0p5X7ukhkM9bWHvXb9tP5L86",
+  "role": "user",
+  "createdAt": {
+    "$date": "2024-07-09T06:56:19.843Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-22T16:45:09.172Z"
+  },
+  "__v": 0,
+  "status": "active",
+  "avatar": "user_images/1721666709168-304896261-ava-1.jpg"
+}]
