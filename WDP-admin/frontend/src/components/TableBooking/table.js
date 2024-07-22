@@ -8,6 +8,8 @@ function TableBooking({ data, handleDelete }) {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    const [hotel, setHotel] = useState(null);
+    const [restaurant, setRestaurant] = useState(null);
     const handleConfirm = async (id) => {
         try {
             const response = await axios.put(`http://localhost:8000/api/v1/booking/confirm-and-send-email/${id}`, { status: 'confirmed' });
@@ -60,7 +62,25 @@ function TableBooking({ data, handleDelete }) {
         setSelectedBooking(null);
     };
 
+
     const handleShowDetails = async (booking) => {
+        const hotelId = booking.hotelId; // Assuming booking contains hotel and restaurant IDs
+        const restaurantId = booking.restaurantId;
+
+        try {
+            const responseHotel = await axios.get(`http://localhost:8000/api/v1/hotels/${hotelId}`, {
+                withCredentials: true,
+            });
+            setHotel(responseHotel.data);
+
+            const responseRestaurant = await axios.get(`http://localhost:8000/api/v1/restaurants/${restaurantId}`, {
+                withCredentials: true,
+            });
+            setRestaurant(responseRestaurant.data);
+        } catch (error) {
+            console.error("Error fetching hotel or restaurant data:", error);
+        }
+
         setSelectedBooking(booking);
         setShowModal(true);
     };
@@ -98,7 +118,7 @@ function TableBooking({ data, handleDelete }) {
                                     <td>{booking.tourName}</td>
                                     <td>{booking.fullName}</td>
                                     <td>{booking.adult + booking.children + booking.baby}</td>
-                                    <td>{booking.phone}</td>
+                                    <td>0{booking.phone}</td>
                                     <td>
                                         {new Date(booking.bookAt).toLocaleString("VN", {
                                             year: "numeric",
@@ -152,8 +172,12 @@ function TableBooking({ data, handleDelete }) {
                             <p><strong>ID:</strong> {selectedBooking._id}</p>
                             <p><strong>Tour Name:</strong> {selectedBooking.tourName}</p>
                             <p><strong>Full Name:</strong> {selectedBooking.fullName}</p>
-                            <p><strong>Guest Size:</strong> {selectedBooking.adult + selectedBooking.children + selectedBooking.baby}</p>
-                            <p><strong>Phone:</strong> {selectedBooking.phone}</p>
+                            <p><strong>Email:</strong> {selectedBooking.userEmail}</p>
+                            <p><strong>Group Size:</strong> {selectedBooking.adult}-adult || {selectedBooking.children}-children || {selectedBooking.baby}-baby</p>
+                            <p><strong>Phone:</strong> 0{selectedBooking.phone}</p>
+                            <p><strong>Hotel:</strong> {hotel ? hotel.name : "Not available"}</p>
+                            <p><strong>Restaurant:</strong> {restaurant ? restaurant.name : "Not available"}</p>
+                            <p><strong>Room:</strong> {selectedBooking.roomQuantity} + {selectedBooking.extraBed}(extraBed)</p>
                             <p><strong>Booking Date:</strong> {new Date(selectedBooking.bookAt).toLocaleString("VN", {
                                 year: "numeric",
                                 month: "2-digit",
@@ -161,20 +185,9 @@ function TableBooking({ data, handleDelete }) {
                             })}</p>
                             <p><strong>Status:</strong> {selectedBooking.status}</p>
                             <p><strong>Price:</strong> {selectedBooking.price}</p>
-                            {/* Display Hotel Details */}
-                            {selectedBooking.hotel && (
-                                <div>
-                                    <p><strong>Hotel:</strong> {selectedBooking.hotel.name}</p>
-                                    <p><strong>Hotel Price:</strong> {selectedBooking.hotel.price}</p>
-                                    <p><strong>Extra Bed Price:</strong> {selectedBooking.hotel.bedPrice}</p>
-                                </div>
-                            )}
-                            {/* Display Restaurant Details */}
-                            {selectedBooking.restaurant && (
-                                <div>
-                                    <p><strong>Restaurant:</strong> {selectedBooking.restaurant.name}</p>
-                                </div>
-                            )}
+                           
+                        
+                           
                             {/* Display Itinerary Details */}
                             {selectedBooking.itinerary && (
                                 <div>

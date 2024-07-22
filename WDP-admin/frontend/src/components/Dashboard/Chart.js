@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 
 const ChartCustom = () => {
@@ -56,9 +56,8 @@ const ChartCustom = () => {
           }
 
           const tourName = booking.tourName;
-          const guestSize = booking.guestSize;
-
-          monthlyData[key].revenue += (tourPrices[tourName] || 0) * guestSize;
+          const guestSize = booking.adult;
+          monthlyData[key].revenue += booking.price;
           monthlyData[key].guests += guestSize;
           monthlyData[key].tours += 1;
         });
@@ -92,29 +91,41 @@ const ChartCustom = () => {
     return <div>Loading...</div>;
   }
 
-  const chartData = {
+  const revenueChartData = {
     labels: data.labels,
     datasets: [
       {
         label: "Tổng doanh thu",
         data: data.revenue,
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
         borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        fill: false,
       },
+    ],
+  };
+
+  const guestsChartData = {
+    labels: data.labels,
+    datasets: [
       {
         label: "Tổng số lượng người đi",
         data: data.guests,
-        backgroundColor: "rgba(153, 102, 255, 0.6)",
         borderColor: "rgba(153, 102, 255, 1)",
-        borderWidth: 1,
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        fill: false,
       },
+    ],
+  };
+
+  const toursChartData = {
+    labels: data.labels,
+    datasets: [
       {
         label: "Tổng số tour đã được book",
         data: data.tours,
-        backgroundColor: "rgba(255, 159, 64, 0.6)",
         borderColor: "rgba(255, 159, 64, 1)",
-        borderWidth: 1,
+        backgroundColor: "rgba(255, 159, 64, 0.2)",
+        fill: false,
       },
     ],
   };
@@ -127,9 +138,10 @@ const ChartCustom = () => {
             <h5 className="card-title">Travel Dashboard</h5>
           </div>
           <div className="card-body">
-            <Bar
+            <h6>Revenue</h6>
+            <Line
               ref={chartRef}
-              data={chartData}
+              data={revenueChartData}
               options={{
                 scales: {
                   y: {
@@ -137,13 +149,41 @@ const ChartCustom = () => {
                   },
                 },
               }}
-              key={JSON.stringify(chartData)}
+              key={JSON.stringify(revenueChartData)}
+            />
+            <hr />
+            <h6>Guests</h6>
+            <Line
+              ref={chartRef}
+              data={guestsChartData}
+              options={{
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              }}
+              key={JSON.stringify(guestsChartData)}
+            />
+            <hr />
+            <h6>Booked Tours</h6>
+            <Line
+              ref={chartRef}
+              data={toursChartData}
+              options={{
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              }}
+              key={JSON.stringify(toursChartData)}
             />
           </div>
           <div className="card-footer">
             <hr />
             <div className="stats">
-              <i className="fa fa-history"></i> Updated 1 month ago
+              <i className="fa fa-history"></i> Updated now
             </div>
           </div>
         </div>

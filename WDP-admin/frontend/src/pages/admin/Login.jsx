@@ -67,7 +67,7 @@ const Login = () => {
                 <div className="user">
                   <img src={userIcon} alt="User" />
                 </div>
-                <h2>Admin Login</h2>
+                <h1>Admin Login</h1>
 
                 <Form onSubmit={handleClick}>
                   <FormGroup>

@@ -3,7 +3,8 @@ import {
     createItinerary,
     updateItinerary,
     getAllItineraries,
-    getAllItinerariesByTourId
+    getAllItinerariesByTourId,
+    deleteItinerariesByTourId
 } from '../Controllers/itineraryController.js'
 import { verifyAdmin, verifyUser } from '../utils/verifyToken.js'
 
@@ -20,5 +21,9 @@ router.get("/",  getAllItineraries);
 
 // Get all itineraries by tour ID
 router.get("/tour/:tourId", getAllItinerariesByTourId);
+
+router.delete("/:tourId", deleteItinerariesByTourId);
+
+
 
 export default router;

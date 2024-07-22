@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import "./side-bar.css";
-import { CiBank, CiMap, CiUser, CiViewList } from "react-icons/ci";
+import { CiBank, CiMap, CiUser, CiViewList, CiLogout } from "react-icons/ci";
 import { Image } from "react-bootstrap";
 import logo from "../../assets/images/logo.png";
 function SideBar() {
@@ -34,7 +34,7 @@ function SideBar() {
             >
               <CiUser style={{ fontSize: "24px" }} />
               &ensp;
-              <p style={{ fontSize: "14px" }}>User List</p>
+              <p style={{ fontSize: "14px" }}>Manage Users</p>
             </Link>
           </li>
           <li className={`${pathname === "/admin/tour-management" ? "active" : ""}`}>
@@ -57,6 +57,17 @@ function SideBar() {
               <CiViewList style={{ fontSize: "24px" }} />
               &ensp;
               <p style={{ fontSize: "14px" }}>Manage Bookings</p>
+            </Link>
+          </li>
+          <li className={`${pathname === "/login" ? "active" : ""}`}>
+            <Link
+              className={`nav-link ${pathname === "/login" ? "active" : ""}`}
+              to="/login"
+              style={{ display: "flex", alignItems: "flex-end" }}
+            >
+              <CiLogout style={{ fontSize: "24px" }} />
+              &ensp;
+              <p style={{ fontSize: "14px" }}>Log out</p>
             </Link>
           </li>
         </ul>

@@ -56,7 +56,7 @@ function CardItem({ totalTours, totalGuests, totalRevenue }) {
           <div className="card-footer">
             <hr />
             <div className="stats">
-              <i className="far fa-calendar"></i> Last day
+              <i className="far fa-calendar"></i> Update Now
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ function CardItem({ totalTours, totalGuests, totalRevenue }) {
           <div className="card-footer">
             <hr />
             <div className="stats">
-              <i className="far fa-clock"></i> In the last hour
+              <i className="far fa-clock"></i> Update Now
             </div>
           </div>
         </div>

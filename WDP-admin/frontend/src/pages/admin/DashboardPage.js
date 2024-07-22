@@ -57,17 +57,22 @@ function DashboardPage() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  const totalGuests = bookings.reduce((acc, booking) => {
+  const confirmedBookings = bookings.filter(
+    (booking) => booking.status === "confirmed"
+  )
+  const totalGuests = confirmedBookings.reduce((acc, booking) => {
     return acc + booking.adult + booking.children + booking.baby;
   }, 0);
 
-  const totalRevenue = bookings.reduce((acc, booking) => {
-    const tour = tours.find((tour) => tour.title === booking.tourName);
-    return acc + (tour ? tour.price * (booking.adult + booking.children + booking.baby) : 0);
+  const totalRevenue = confirmedBookings.reduce((acc, booking) => {
+    
+      const tour = tours.find((tour) => tour.title === booking.tourName);
+      return acc + (tour ? tour.price * (booking.adult + booking.children + booking.baby) : 0);
+    
+    return acc;
   }, 0);
 
-  const totalTours = bookings.length;
+  const totalTours = confirmedBookings.length;
 
   return (
     <>

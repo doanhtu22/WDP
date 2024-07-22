@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import "../../styles/mybooking.css";
 import { format } from "date-fns";
 import TourCardBooking from "../../components/Tourdetail-mybooking/TourCard";
+import CommonSection from "../../shared/CommonSection";
 
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
@@ -125,8 +126,11 @@ const MyBookings = () => {
     };
 
     return (
+        <>
+        <CommonSection title="My Bookings" />
         <Container>
-            <h2 className="mt-4 mb-4">My Bookings</h2>
+            <br/>
+            <br/>
             {bookingsWithTourInfo.length === 0 ? (
                 <p>You don't have any booked tours yet.</p>
             ) : (
@@ -229,6 +233,7 @@ const MyBookings = () => {
                 </Modal.Footer>
             </Modal>
         </Container>
+        </>
     );
 };
 

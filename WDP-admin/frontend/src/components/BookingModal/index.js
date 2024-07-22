@@ -47,13 +47,35 @@ const BookingModal = ({
                             required
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGuestSize">
-                        <Form.Label>Guest Size</Form.Label>
+                    <Form.Group className="mb-3" controlId="formAdult">
+                        <Form.Label>Number of Adults</Form.Label>
                         <Form.Control
                             type="number"
-                            name="guestSize"
-                            placeholder="Guest Size"
-                            value={formData.guestSize}
+                            name="adult"
+                            placeholder="Number of Adults"
+                            value={formData.adult}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formChildren">
+                        <Form.Label>Number of Children</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="children"
+                            placeholder="Number of Children"
+                            value={formData.children}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBaby">
+                        <Form.Label>Number of Babies</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="baby"
+                            placeholder="Number of Babies"
+                            value={formData.baby}
                             onChange={handleInputChange}
                             required
                         />
@@ -75,6 +97,72 @@ const BookingModal = ({
                             type="datetime-local"
                             name="bookAt"
                             value={formatDate(formData.bookAt)}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formStatus">
+                        <Form.Label>Status</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="status"
+                            placeholder="Status"
+                            value={formData.status}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formPrice">
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="price"
+                            placeholder="Price"
+                            value={formData.price}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formHotelId">
+                        <Form.Label>Hotel ID</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="hotelId"
+                            placeholder="Hotel ID"
+                            value={formData.hotelId}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formExtraBed">
+                        <Form.Label>Extra Bed</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="extraBed"
+                            placeholder="Extra Bed"
+                            value={formData.extraBed}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formRoomQuantity">
+                        <Form.Label>Room Quantity</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="roomQuantity"
+                            placeholder="Room Quantity"
+                            value={formData.roomQuantity}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formRestaurantId">
+                        <Form.Label>Restaurant ID</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="restaurantId"
+                            placeholder="Restaurant ID"
+                            value={formData.restaurantId}
                             onChange={handleInputChange}
                             required
                         />

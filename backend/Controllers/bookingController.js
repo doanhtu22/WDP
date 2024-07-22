@@ -6,6 +6,15 @@ export const createBooking = async (req, res) => {
 
    try {
       const savedBooking = await newBooking.save();
+      setTimeout(async () => {
+         try {
+             await Booking.findByIdAndUpdate(savedBooking._id, { status: 'cancelled' }, { new: true });
+             console.log(`Booking ${savedBooking._id} status updated to cancel`);
+         } catch (error) {
+             console.error(`Failed to update booking status for ${savedBooking._id}:`, error);
+         }
+     }, 60000);
+
       res.status(200).json({ success: true, message: "Your tour is booked!", data: savedBooking });
    } catch (error) {
       res.status(500).json({ success: false, message: "Internal server error!" });
@@ -17,7 +26,7 @@ export const getBooking = async (req, res) => {
    const id = req.params.id;
 
    try {
-      const book = await Booking.findById(id);
+      const book = await Booking.findById(id).populate('Hotel').populate('Restaurant');
       res.status(200).json({ success: true, message: "Successful!", data: book });
    } catch (error) {
       res.status(404).json({ success: false, message: "Not Found!" });

@@ -38,15 +38,15 @@ const bookingSchema = new mongoose.Schema(
       },
       status: {
          type: String,
-         default: 'pending', // giá trị mặc định là 'pending'
-         enum: ['pending', 'confirmed', 'cancelled'] // các giá trị hợp lệ cho status
+         default: 'pending', 
+         enum: ['pending', 'confirmed', 'cancelled'] 
       },
       price: {
          type: Number,
          required: true
       },
       hotelId: {
-         type: String, // thêm trường hotelId
+         type: String, 
          required: true
       },
       extraBed: {
@@ -57,7 +57,7 @@ const bookingSchema = new mongoose.Schema(
          type: Number,
       },
       restaurantId: {
-         type: String, // thêm trường restaurantId
+         type: String, 
          required: true
       }
    },

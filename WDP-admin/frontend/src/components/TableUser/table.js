@@ -55,7 +55,7 @@ function TableUser({ data, handleEdit, handleDelete, handleBanUser }) {
                       variant={user.status === "active" ? "secondary" : "success"}
                       onClick={() => handleBanUser(user._id, user.status === "active" ? "inactive" : "active")}
                     >
-                      {user.status === "active" ? "Ban" : "Unban"}
+                      {user.status === "active" ? "Deactivate" : "Activate"}
                     </Button>
                   </td>
                 </tr>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useContext } from 'react';
-import { Container, Row, Button } from 'reactstrap';
+import { Container, Row, Button,Image, Col } from 'react-bootstrap';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import './header.css';
@@ -101,25 +101,12 @@ const Header = () => {
                      <div className='nav__btns d-flex align-items-center gap-2'>
                         {user ? (
                            <>
-                              <Dropdown>
-                                 <Dropdown.Toggle
-                                    id='dropdown-button-dark-example1'
-                                    variant='secondary'
-                                 >
-                                    {user.username}
-                                 </Dropdown.Toggle>
-
-                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to='/profile'>
-                                       Profile
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to='/my-booking'>
-                                       MyBooking
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-                                 </Dropdown.Menu>
-                              </Dropdown>
+                              <Image id='profile-avatar'
+                                src={user.avatar}s
+                                alt="Profile Avatar"
+                                style={{ width: '60px', height: '60px', borderRadius: '50%' }}
+                                onClick={() => navigate('/profile')}
+                            /> 
                            </>
                         ) : (
                            <>

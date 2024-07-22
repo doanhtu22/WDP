@@ -24,6 +24,7 @@ const sendConfirmationEmail = async (booking) => {
 
     html = html.replace('{{fullName}}', booking.fullName)
                .replace('{{tourName}}', booking.tourName)
+               .replace('{{tourId}}', booking._id)
                .replace('{{adult}}', booking.adult)
                .replace('{{children}}', booking.children)
                .replace('{{baby}}', booking.baby)

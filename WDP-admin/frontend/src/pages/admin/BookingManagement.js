@@ -13,9 +13,16 @@ function BookingManagement() {
         userEmail: "",
         tourName: "",
         fullName: "",
+        adult: 0,
+        children: 0,
+        baby: 0,
         guestSize: 0,
         phone: "",
         bookAt: "",
+        hotel: "",
+        extraBed: 0,
+        roomQuantity: 0,
+        restaurant: "",
     });
     const [editingBooking, setEditingBooking] = useState(null);
 
@@ -55,9 +62,16 @@ function BookingManagement() {
                 userEmail: "",
                 tourName: "",
                 fullName: "",
+                adult: 0,
+                children: 0,
+                baby: 0,
                 guestSize: 0,
                 phone: "",
                 bookAt: "",
+                hotel: "",
+                extraBed: 0,
+                roomQuantity: 0,
+                restaurant: "",
             });
             setEditingBooking(null);
             setShowModal(false);

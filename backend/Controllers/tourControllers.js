@@ -1,3 +1,4 @@
+import { response } from 'express'
 import Tour from '../models/Tour.js'
 
 //Create new tour
@@ -5,8 +6,7 @@ export const createTour = async (req, res) => {
    const newTour = new Tour(req.body)
 
    try {
-      const savedTour = await newTour.save()
-
+      const savedTour = await newTour.save();
       res.status(200).json({ success: true, message: 'Successfully created', data: savedTour })
    } catch (error) {
       res.status(500).json({ success: true, message: 'Failed to create. Try again!' })
@@ -41,7 +41,7 @@ export const deleteTour = async (req, res) => {
    }
 }
 
-//Getsingle Tour
+//Get single Tour
 export const getSingleTour = async (req, res) => {
    const id = req.params.id
 
@@ -62,7 +62,7 @@ export const getAllTour = async (req, res) => {
    //console.log(page)
 
    try {
-      const tours = await Tour.find({}).populate('reviews').skip(page * 8).limit(8)
+      const tours = await Tour.find({}).populate('reviews')
 
       res.status(200).json({ success: true, count: tours.length, message: 'Successfully', data: tours })
    } catch (error) {

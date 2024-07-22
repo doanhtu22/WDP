@@ -3,10 +3,13 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/config';
 import { Container, Row, Col, Form, Button, Image, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import '../../styles/profile.css';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { user, dispatch } = useContext(AuthContext);
     const [profile, setProfile] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     const [isChangingPassword, setIsChangingPassword] = useState(false);
@@ -18,6 +21,10 @@ const Profile = () => {
         address: '',
         phone: ''
     });
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' });
+        navigate('/');
+     };
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',
         newPassword: '',
@@ -117,8 +124,29 @@ const Profile = () => {
 
     return (
         <Container>
-            <h2 className="my-4">User Profile</h2>
-            {isEditing ? (
+            <br/>
+            <br/>
+            <Row>
+            <Col md={4}>
+                        {profile.avatar && (
+                            <Image id='profile-avatar'
+                                src={profile.avatar}s
+                                alt="Profile Avatar"
+                            /> 
+                        )}
+                        <div id='profile-name'>{profile.username}</div>
+                        <br/>
+                        <div id = 'profile-btn' onClick={() => { setIsChangingPassword(false); setIsEditing(true) }}>Edit profile</div>
+                        <hr/>
+                        <div id = 'profile-btn' onClick={() => { setIsChangingPassword(true); setIsEditing(false) }}>Change password</div>
+                        <hr/>
+                        <div id = 'profile-btn' onClick={() => navigate("/my-booking")}>View my bookings</div> 
+                        <hr/>
+                        <div id = 'profile-btn' onClick={() => logout()}>Log out</div>
+                        <br/> 
+                    </Col>
+                    <Col md={8}>
+                    {isEditing ? (
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Username</Form.Label>
@@ -126,15 +154,6 @@ const Profile = () => {
                             type="text"
                             name="username"
                             value={formData.username}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            type="email"
-                            name="email"
-                            value={formData.email}
                             onChange={handleChange}
                         />
                     </Form.Group>
@@ -148,11 +167,19 @@ const Profile = () => {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Address</Form.Label>
+                        <Form.Label>Avatar</Form.Label>
                         <Form.Control
-                            type="text"
-                            name="address"
-                            value={formData.address}
+                            type="file"
+                            name="avatar"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                         />
                     </Form.Group>
@@ -165,52 +192,43 @@ const Profile = () => {
                             onChange={handleChange}
                         />
                     </Form.Group>
+                    
                     <Form.Group className="mb-3">
-                        <Form.Label>Avatar</Form.Label>
+                        <Form.Label>Address</Form.Label>
                         <Form.Control
-                            type="file"
-                            name="avatar"
+                            type="text"
+                            name="address"
+                            value={formData.address}
                             onChange={handleChange}
                         />
                     </Form.Group>
-                    <Button className="me-2" variant="primary" onClick={handleSave}>
+                    
+                    
+                    <Button id='save' onClick={handleSave}>
                         Save
                     </Button>
-                    <Button variant="secondary" onClick={() => setIsEditing(false)}>
+                    <Button id='cancel' onClick={() => setIsEditing(false)}>
                         Cancel
                     </Button>
                 </Form>
             ) : (
                 <Row className="profile-details">
-                    <Col md={6}>
-                        <p><strong>Username:</strong> {profile.username}</p>
+                    <Col md={8}>
                         <p><strong>Email:</strong> {profile.email}</p>
+                        <hr/>
                         <p><strong>Full Name:</strong> {profile.fullname}</p>
+                        <hr/>
                         <p><strong>Address:</strong> {profile.address}</p>
+                        <hr/>
                         <p><strong>Phone:</strong> {profile.phone}</p>
-                    </Col>
-                    <Col md={6}>
-                        {profile.avatar && (
-                            <Image
-                                src={profile.avatar}
-                                alt="Profile Avatar"
-                            />
-                        )}
-                    </Col>
-                    <Col md={12}>
-                        <Button className="me-2" variant="primary" onClick={() => setIsEditing(true)}>
-                            Edit Profile
-                        </Button>
-                        <Button variant="secondary" onClick={() => setIsChangingPassword(true)}>
-                            Change Password
-                        </Button>
                     </Col>
                 </Row>
             )}
 
             {isChangingPassword && (
                 <Form className="password-form">
-                    <h4>Change Password</h4>
+                    <h4 style={{textAlign: 'center'}}>Change Password</h4>
+                    
                     {passwordError && <Alert variant="danger">{passwordError}</Alert>}
                     {passwordSuccess && <Alert variant="success">{passwordSuccess}</Alert>}
                     <Form.Group className="mb-3">
@@ -246,8 +264,12 @@ const Profile = () => {
                     <Button variant="secondary" onClick={() => setIsChangingPassword(false)}>
                         Cancel
                     </Button>
+                        
                 </Form>
             )}
+                    </Col>
+            </Row>
+            
         </Container>
     );
 }

@@ -78,19 +78,21 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="Logo">
+            <!-- <img src="logo.png" classNam alt="Logo"> -->
             <h1>Booking Confirmation</h1>
         </div>
         <div class="content">
-            <p>Dear {{fullName}},</p>
+            <p>Dear <span>{{fullName}}</span>,</p>
             <p>Thank you for choosing our services! We are excited to confirm your booking for the tour "<strong>{{tourName}}</strong>". Below are your booking details:</p>
             <ul>
-                <li><strong>Full Name:</strong> {{fullName}}</li>
+                <li><strong>Tour Code:</strong> {{tourId}}</li>
+                <li><strong>Full Name:</strong> <span>{{fullName}}</span></li>
                 <li><strong>Number of Adults:</strong> {{adult}}</li>
                 <li><strong>Number of Children:</strong> {{children}}</li>
                 <li><strong>Number of Babies:</strong> {{baby}}</li>
                 <li><strong>Tour Date:</strong> {{bookAt}}</li>
-                <li><strong>Total Price:</strong> ${{price}}</li>
+                <li><strong>Total Price:</strong><b>${{price}}</b> </li>
+                
             </ul>
             <p>If you have any questions or need further assistance, feel free to contact us.</p>
             <p>We look forward to providing you with an amazing experience!</p>
