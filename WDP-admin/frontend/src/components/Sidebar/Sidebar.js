@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import "./side-bar.css";
 import { CiBank, CiMap, CiUser, CiViewList, CiLogout } from "react-icons/ci";
+import { GrContact } from "react-icons/gr";
 import { Image } from "react-bootstrap";
 import logo from "../../assets/images/logo.png";
 function SideBar() {
@@ -57,6 +58,17 @@ function SideBar() {
               <CiViewList style={{ fontSize: "24px" }} />
               &ensp;
               <p style={{ fontSize: "14px" }}>Manage Bookings</p>
+            </Link>
+          </li>
+          <li className={`${pathname === "/admin/contact-management" ? "active" : ""}`}>
+            <Link
+              className={`nav-link ${pathname === "/admin/contact-management" ? "active" : ""}`}
+              to="/admin/contact-management"
+              style={{ display: "flex", alignItems: "flex-end" }}
+            >
+              <GrContact style={{ fontSize: "24px" }} />  
+              &ensp;
+              <p style={{ fontSize: "14px" }}>Manage Contacts</p>
             </Link>
           </li>
           <li className={`${pathname === "/login" ? "active" : ""}`}>

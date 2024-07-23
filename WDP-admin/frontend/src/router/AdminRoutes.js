@@ -5,6 +5,7 @@ import BookingManagement from "../pages/admin/BookingManagement";
 import ProtectedRoute from './ProtectedRoute';
 import CreateTour from "../pages/admin/CreateTour";
 import UpdateTour from "../pages/admin/UpdateTour";
+import ContactManagement from "../pages/admin/ContactMangement";
 
 export const adminRoutes = [
   { path: "dashboard", element: <ProtectedRoute element={<DashboardPage />} requiredRole="admin" />, title: "Dashboard" },
@@ -13,5 +14,6 @@ export const adminRoutes = [
   { path: "booking-management", element: <ProtectedRoute element={<BookingManagement />} requiredRole="admin" />, title: "Booking List" },
   { path: "create-tour", element: <ProtectedRoute element={<CreateTour/>} requiredRole="admin" />, title: "Create Tour" },
   { path: "update-tour/:id", element: <ProtectedRoute element={<UpdateTour/>} requiredRole="admin" />, title: "Update Tour" },
+  { path: "contact-management", element: <ProtectedRoute element={<ContactManagement />} requiredRole="admin" />, title: "Contact List" },
   { path: "*", element: <ProtectedRoute element={<DashboardPage />} requiredRole="admin" /> },
 ];

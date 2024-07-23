@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import '../../styles/contact.css';
 import CommonSection from '../../shared/CommonSection';
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/contact ', formData);
+      setStatus(response.data.message);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setStatus('Failed to send message');
+    }
+  };
+
   return (
     <>
       <CommonSection title={"Contact"} />
@@ -17,21 +46,43 @@ const ContactPage = () => {
             </div>
             <div className="col-md-6">
               <h2>Gửi tin nhắn cho chúng tôi</h2>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Tên</label>
-                  <input type="text" className="form-control" id="name" required />
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" className="form-control" id="email" required />
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="message" className="form-label">Tin nhắn</label>
-                  <textarea className="form-control" id="message" rows="5" required></textarea>
+                  <textarea
+                    className="form-control"
+                    id="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary">Gửi</button>
               </form>
+              {status && <p>{status}</p>}
             </div>
           </div>
         </div>
